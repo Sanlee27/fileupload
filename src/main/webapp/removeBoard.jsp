@@ -5,6 +5,17 @@
 <%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.*"%>    
 <%	
+	//유효성검사
+	
+	if(request.getParameter("boardNo") == null || request.getParameter("boardNo").equals(null)
+		|| request.getParameter("boardFileNo") == null || request.getParameter("boardFileNo").equals(null)){
+			response.sendRedirect(request.getContextPath()+"/boardList.jsp");
+			return;
+	}
+	System.out.println(request.getParameter("boardNo") + " : removeBoard req boardNo");
+	System.out.println(request.getParameter("boardFileNo") + " : removeBoard req boardFileNo");
+	
+	// 변수에 저장
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 	int boardFileNo = Integer.parseInt(request.getParameter("boardFileNo"));
 	
@@ -18,7 +29,7 @@
 	Connection conn = DriverManager.getConnection(dburl, dbuser, dbpw);    
 	
 	// 정보 조회 쿼리
-	String boardSql = "SELECT b.board_no boardNo, b.board_title boardTitle, f.board_file_no boardFileNo, f.origin_filename originFilename FROM board b INNER JOIN board_file f ON b.board_no = f.board_no WHERE b.board_no =? AND f.board_file_no = ?";
+	String boardSql = "SELECT b.board_no boardNo, b.board_title boardTitle, f.board_file_no boardFileNo, f.save_filename saveFilename FROM board b INNER JOIN board_file f ON b.board_no = f.board_no WHERE b.board_no =? AND f.board_file_no = ?";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql);
 	boardStmt.setInt(1, boardNo);
 	boardStmt.setInt(2, boardFileNo);
@@ -29,7 +40,7 @@
 		map.put("boardNo", rs.getInt("boardNo"));
 		map.put("boardTitle", rs.getString("boardTitle"));
 		map.put("boardFileNo", rs.getInt("boardFileNo"));
-		map.put("originFilename", rs.getString("originFilename"));
+		map.put("saveFilename", rs.getString("saveFilename"));
 	}
 %>   
 <!DOCTYPE html>
@@ -53,12 +64,12 @@
 			<tr>
 				<th>boardTitle</th>
 				<td>
-					<textarea rows="3" cols="50" name="boardTitle" readonly="readonly"><%=map.get("boardTitle")%></textarea>
+					<%=map.get("boardTitle")%>
 				</td>
 			</tr>
 			<tr>
 				<th>boardFile</th>
-				<td><%=map.get("originFilename")%></td>
+				<td><%=map.get("saveFilename")%></td>
 			</tr>
 		</table>
 		<button type="submit">삭제</button>
