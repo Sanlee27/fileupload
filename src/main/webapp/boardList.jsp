@@ -111,32 +111,32 @@
 </head>
 <body>
 	<div class="container mt-3">
-	<h1 style="text-align: center;">PDF 자료 목록</h1>
-	<a type="button" class="btn btn-outline-secondary" href = "<%=request.getContextPath()%>/addBoard.jsp">업로드하기</a>
-	<br>
-	<table class="table table-hover">
-		<tr>
-			<th>자료명</th>
-			<th>파일명</th>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
-		<%
-			for(HashMap<String, Object> m : list){
-		%>
-				<tr>
-					<td><%=(String)m.get("boardTitle") %></td>
-					<td>
-						<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
-							<%=(String)m.get("originFilename") %>
-						</a>
-					<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
-					<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
-				</tr>
-		<%
-			}
-		%>
-	</table>
+		<h1 style="text-align: center;">PDF 자료 목록</h1>
+		<a type="button" class="btn btn-outline-secondary" href = "<%=request.getContextPath()%>/addBoard.jsp">업로드하기</a>
+		<br>
+		<table class="table table-hover">
+			<tr>
+				<th>자료명</th>
+				<th>파일명</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+			<%
+				for(HashMap<String, Object> m : list){
+			%>
+					<tr>
+						<td><%=(String)m.get("boardTitle") %></td>
+						<td>
+							<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
+								<%=(String)m.get("originFilename") %>
+							</a>
+						<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
+						<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
+					</tr>
+			<%
+				}
+			%>
+		</table>
 	</div>
 	<!-- ============= 페이지 ============= -->
 	<div class="container mt-3">
@@ -190,7 +190,7 @@
 			if(lastPage == 0){
 		%>
 				<li>
-					<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/boardList.jsp?currentPage=1>">마지막페이지</a>&nbsp;
+					<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/boardList.jsp?currentPage=1">마지막페이지</a>&nbsp;
 				</li>
 		<%
 			} else {

@@ -45,34 +45,37 @@
 <head>
 <meta charset="UTF-8">
 <title>modify Board</title>
-<style>
-	table, th, td {
-		border: 1px solid #FF0000;
-}
-</style>
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<h1>board &amp; boardFile 수정</h1>
-	<a href="<%=request.getContextPath()%>/boardList.jsp">목록으로</a>
-	<form action="<%=request.getContextPath()%>/modifyBoardAction.jsp" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="boardNo" value=<%=map.get("boardNo")%>>
-		<input type="hidden" name="boardFileNo" value=<%=map.get("boardFileNo")%>>
-		<table>
-			<tr>
-				<th>boardTitle</th>
-				<td>
-					<textarea rows="3" cols="50" name="boardTitle" required="required"><%=map.get("boardTitle")%></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>boardFile(수정전 파일 : <%=map.get("originFilename")%>)</th>
-				<td>
-					
-					<input type="file" name="boardFile">
-				</td>
-			</tr>
-		</table>
-		<button type="submit">수정</button>
-	</form>
+	<div class="container mt-3">
+		<h1 style="text-align: center;">board &amp; boardFile 수정</h1>
+		<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/boardList.jsp">목록으로</a>
+		<br>
+		<form action="<%=request.getContextPath()%>/modifyBoardAction.jsp" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="boardNo" value=<%=map.get("boardNo")%>>
+			<input type="hidden" name="boardFileNo" value=<%=map.get("boardFileNo")%>>
+			<table class="table table-hover">
+				<tr>
+					<th>자료명</th>
+					<td>
+						<textarea rows="3" cols="50" name="boardTitle" required="required"><%=map.get("boardTitle")%></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>파일 선택(수정전 파일 : <%=map.get("originFilename")%>)</th>
+					<td>
+						
+						<input type="file" name="boardFile">
+					</td>
+				</tr>
+			</table>
+			<button type="submit" class="btn btn-outline-secondary">수정</button>
+		</form>
+	</div>
 </body>
 </html>
