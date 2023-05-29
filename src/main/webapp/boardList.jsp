@@ -112,6 +112,18 @@
 <body>
 	<div class="container mt-3">
 		<h1 style="text-align: center;">PDF 자료 목록</h1>
+		<% 
+			// 세션 유효성 검사(로그인 확인)
+			if(session.getAttribute("loginMemberId") !=null){
+		%>
+				<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/logoutAction.jsp">로그아웃</a>
+		<%
+			} else {
+		%>
+				<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/login.jsp">로그인</a>
+		<%
+			}
+		%>
 		<a type="button" class="btn btn-outline-secondary" href = "<%=request.getContextPath()%>/addBoard.jsp">업로드하기</a>
 		<br>
 		<table class="table table-hover">
@@ -126,12 +138,29 @@
 			%>
 					<tr>
 						<td><%=(String)m.get("boardTitle") %></td>
-						<td>
-							<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
-								<%=(String)m.get("originFilename") %>
-							</a>
-						<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
-						<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
+						<%
+							if(session.getAttribute("loginMemberId") !=null){
+						%>
+								<td>
+									<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
+										<%=(String)m.get("originFilename") %>
+									</a>
+								</td>
+								<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
+								<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
+							<%
+								} else {
+							%>
+								<td>
+									<a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/login.jsp">
+										<%=(String)m.get("originFilename") %>
+									</a>
+								</td>
+								<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/login.jsp">수정</a></td>
+								<td><a type="button" class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/login.jsp">삭제</a></td>
+							<%
+								}
+							%>
 					</tr>
 			<%
 				}
