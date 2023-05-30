@@ -232,5 +232,10 @@
 		%>		
 		</ul>
 	</div>
+	<br>
+	<div class="text-center">
+		<!-- include 페이지 : copyright &copy; 구디아카데미 -->
+		<jsp:include page="/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>
