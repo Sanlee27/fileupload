@@ -111,7 +111,11 @@
 </head>
 <body>
 	<div class="container mt-3">
-		<h1 style="text-align: center;">PDF 자료 목록</h1>
+		<div class="p-4 bg-dark text-white text-center">
+		<h1>PDF 자료 목록</h1>
+		<p>자료실 구현</p> 
+	</div>
+	<br>
 		<% 
 			// 세션 유효성 검사(로그인 확인)
 			if(session.getAttribute("loginMemberId") !=null){
@@ -125,7 +129,6 @@
 			}
 		%>
 		<a type="button" class="btn btn-outline-secondary" href = "<%=request.getContextPath()%>/addBoard.jsp">업로드하기</a>
-		<br>
 		<table class="table table-hover">
 			<tr>
 				<th>자료명</th>
