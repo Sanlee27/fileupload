@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String loginMemberId = (String)session.getAttribute("loginMemberId");
+	//세션 유효성 검사(로그인 유무)
+	if(session.getAttribute("loginMemberId") != null) { // 로그인이 되어있다면
+		response.sendRedirect(request.getContextPath()+"/boardList.jsp"); // 메인페이지로
+		return;
+	}
 %>    
 <!DOCTYPE html>
 <html>

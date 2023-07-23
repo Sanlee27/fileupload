@@ -3,6 +3,14 @@
 <%@ page import = "java.util.*"%>
 <%@ page import = "java.sql.*"%>
 <%
+	//세션 유효성 검사(로그인 유무)
+	if(session.getAttribute("loginMemberId") == null) { // 로그인이 되어있지 않다면
+		response.sendRedirect(request.getContextPath()+"/login.jsp"); // 로그인 페이지로
+		return;
+	}
+	// 로그인 아이디 정보 저장
+	String memberId = (String)session.getAttribute("loginMemberId");
+
 	/* System.out.println(request.getParameter("boardNo") + " : boardNo");
 	System.out.println(request.getParameter("boardFileNo") + " : boardFileNo"); */
 

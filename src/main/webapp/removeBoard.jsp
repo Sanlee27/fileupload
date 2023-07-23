@@ -5,8 +5,13 @@
 <%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.*"%>    
 <%	
+	//세션 유효성 검사(로그인 유무)
+	if(session.getAttribute("loginMemberId") == null) { // 로그인이 되어있지 않다면
+		response.sendRedirect(request.getContextPath()+"/login.jsp"); // 로그인 페이지로
+		return;
+	}
+
 	//유효성검사
-	
 	if(request.getParameter("boardNo") == null || request.getParameter("boardNo").equals(null)
 		|| request.getParameter("boardFileNo") == null || request.getParameter("boardFileNo").equals(null)){
 			response.sendRedirect(request.getContextPath()+"/boardList.jsp");
